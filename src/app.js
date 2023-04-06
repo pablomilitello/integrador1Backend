@@ -5,6 +5,7 @@ import { __dirname } from './utils.js';
 import handlebars from 'express-handlebars';
 import viewsRouter from './routes/views.router.js';
 import { Server } from 'socket.io';
+import './db/dbConfig.js';
 
 import ProductManager from '../src/Dao/ProductManager.js';
 const path = __dirname + '/products.json';
