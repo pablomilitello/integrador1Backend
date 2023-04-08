@@ -14,7 +14,14 @@ class ProductManager {
     }
   };
 
-  //getProductById = async (id) => {};
+  getProductById = async (id) => {
+    try {
+      const product = await productModel.find({ _id: id });
+      return product;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   addProducts = async (product) => {
     try {
@@ -25,11 +32,32 @@ class ProductManager {
     }
   };
 
-  //updateProduct = async (id, obj) => {};
+  updateProduct = async (id, obj) => {
+    try {
+      const product = await productModel.findOneAndUpdate({ _id: id }, obj);
+      return product;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  //deleteProducts = async () => {};
+  deleteProducts = async () => {
+    try {
+      await productModel.deleteMany();
+      return 'Products deleted';
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  //deleteProductsById = async (id) => {};
+  deleteProductsById = async (id) => {
+    try {
+      await productModel.deleteOne({ _id: id });
+      return 'Product deleted';
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }
 
 export default ProductManager;

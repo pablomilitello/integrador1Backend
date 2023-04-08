@@ -30,7 +30,7 @@ router.get('/', async (req, res) => {
 router.get('/:pid', async (req, res) => {
   try {
     const { pid } = req.params;
-    const product = await productManager.getProductById(+pid);
+    const product = await productManager.getProductById(pid);
     if (product.length == 0) {
       res.json({ message: 'Product not existent' });
     } else {
@@ -57,7 +57,7 @@ router.put('/:pid', async (req, res) => {
   try {
     const { pid } = req.params;
     const obj = req.body;
-    const product = await productManager.updateProduct(+pid, obj);
+    const product = await productManager.updateProduct(pid, obj);
     res.status(201).json({ product });
   } catch (error) {
     console.error(err);
@@ -78,7 +78,7 @@ router.delete('/', async (req, res) => {
 router.delete('/:pid', async (req, res) => {
   try {
     const { pid } = req.params;
-    const products = await productManager.deleteProductsById(+pid);
+    const products = await productManager.deleteProductsById(pid);
     res.status(201).json({ products });
   } catch (error) {
     console.error(err);
