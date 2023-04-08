@@ -1,17 +1,35 @@
+import { productModel } from '../db/models/products.model.js';
+
 class ProductManager {
   constructor(path) {
     this.path = path;
   }
 
-  getProducts = async () => {};
+  getProducts = async () => {
+    try {
+      const products = await productModel.find();
+      return products;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  getProductById = async (id) => {};
+  //getProductById = async (id) => {};
 
-  addProducts = async (product) => {};
+  addProducts = async (product) => {
+    try {
+      const newProduct = await productModel.create(product);
+      return newProduct;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  updateProduct = async (id, obj) => {};
+  //updateProduct = async (id, obj) => {};
 
-  deleteProducts = async () => {};
+  //deleteProducts = async () => {};
 
-  deleteProductsById = async (id) => {};
+  //deleteProductsById = async (id) => {};
 }
+
+export default ProductManager;
