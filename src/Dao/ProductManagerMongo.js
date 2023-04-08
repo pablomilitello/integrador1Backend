@@ -1,10 +1,6 @@
 import { productModel } from '../db/models/products.model.js';
 
 class ProductManager {
-  constructor(path) {
-    this.path = path;
-  }
-
   getProducts = async () => {
     try {
       const products = await productModel.find();

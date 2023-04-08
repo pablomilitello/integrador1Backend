@@ -1,5 +1,6 @@
 import { Router } from 'express';
-import CartManager from '../Dao/CartManager.js';
+//import CartManager from '../Dao/CartManager.js';
+import CartManager from '../Dao/CartManagerMongo.js';
 import { __dirname } from '../utils.js';
 
 const path = __dirname + '/carts.json';
@@ -23,7 +24,7 @@ router.post('/', async (req, res) => {
 router.get('/:cid', async (req, res) => {
   try {
     const { cid } = req.params;
-    const cart = await cartManager.getCartById(+cid);
+    const cart = await cartManager.getCartById(cid);
     if (cart.length == 0) {
       res.json({ message: 'Cart not existent' });
     } else {
