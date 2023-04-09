@@ -26,20 +26,24 @@ class CartManager {
     if (!cart) {
       return "Cart doesn't exist";
     } else {
-      //const product = cart.products.find((p) => p.product === pid);
-      console.log('carts', cart.products);
+      const product = cart.products.find((p) => p.product === pid);
+      console.log(product);
 
-      //   if (!product) {
-      //     cart.products.push(obj);
-      //     //agregar funcion
-      //     return 'Product in cart';
-      //   } else {
-      //     const obj = product.quantity++;
-      //     await cartModel.findOneAndUpdate({ _id: cid }, obj);
-      //     return 'Product in cart';
-      //   }
+      if (!product) {
+        console.log('Carrito vacio');
+        //     cart.products.push(obj);
+        //     //agregar funcion
+        //     return 'Product in cart';
+      } else {
+        console.log('Carrito lleno');
+        //     const obj = product.quantity++;
+        //     await cartModel.findOneAndUpdate({ _id: cid }, obj);
+        //     return 'Product in cart';
+      }
     }
   };
 }
 
 export default CartManager;
+
+//6432b29d788eb6d58ae59ea8/product/6431d502499b64eb353bf3e2
