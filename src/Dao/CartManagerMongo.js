@@ -19,7 +19,27 @@ class CartManager {
     }
   };
 
-  addProductsToCart = async (cid, pid) => {};
+  addProductsToCart = async (cid, pid) => {
+    const cart = await this.getCartById(cid);
+    let q = 1;
+    const obj = { product: pid, quantity: q };
+    if (!cart) {
+      return "Cart doesn't exist";
+    } else {
+      //const product = cart.products.find((p) => p.product === pid);
+      console.log('carts', cart.products);
+
+      //   if (!product) {
+      //     cart.products.push(obj);
+      //     //agregar funcion
+      //     return 'Product in cart';
+      //   } else {
+      //     const obj = product.quantity++;
+      //     await cartModel.findOneAndUpdate({ _id: cid }, obj);
+      //     return 'Product in cart';
+      //   }
+    }
+  };
 }
 
 export default CartManager;
