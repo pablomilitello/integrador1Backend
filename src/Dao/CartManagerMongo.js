@@ -45,5 +45,3 @@ class CartManager {
 }
 
 export default CartManager;
-
-//6432b29d788eb6d58ae59ea8/product/6431d502499b64eb353bf3e2
