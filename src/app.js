@@ -32,6 +32,8 @@ const PORT = 8080;
 //Configuro el SocketServer
 const httpServer = app.listen(PORT, () => console.log(`Listen in port ${PORT}`));
 
+const messages = [];
+
 const socketServer = new Server(httpServer);
 
 socketServer.on('connection', (socket) => {
@@ -48,5 +50,15 @@ socketServer.on('connection', (socket) => {
   socket.on('deleteProduct', (id) => {
     console.log(`Product deleted ${id}`);
     productManager.deleteProductsById(id);
+  });
+
+  socket.on('message', (info) => {
+    messages.push(info);
+    socketServer.emit('chat', messages);
+  });
+
+  socket.on('newUser', (newUser) => {
+    socket.broadcast.emit('broadcastChat', newUser);
+    socketServer.emit('chat', messages);
   });
 });
