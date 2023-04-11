@@ -1,7 +1,18 @@
 import mongoose from 'mongoose';
 
 const chatSchema = new mongoose.Schema({
-  chat: [{ username: String, message: String }],
+  chat: [
+    {
+      user: {
+        type: String,
+        required: true,
+      },
+      message: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
 });
 
 export const chatModel = mongoose.model('Chat', chatSchema);

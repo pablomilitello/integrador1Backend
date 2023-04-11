@@ -31,8 +31,8 @@ router.get('/:pid', async (req, res) => {
   try {
     const { pid } = req.params;
     const product = await productManager.getProductById(pid);
-    if (product.length == 0) {
-      res.json({ message: 'Product not existent' });
+    if (!product) {
+      res.json({ message: 'Product does not exist' });
     } else {
       res.json(product);
     }

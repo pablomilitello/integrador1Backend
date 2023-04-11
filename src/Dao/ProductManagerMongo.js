@@ -12,7 +12,7 @@ class ProductManager {
 
   getProductById = async (id) => {
     try {
-      const product = await productModel.find({ _id: id });
+      const product = await productModel.findOne({ _id: id });
       return product;
     } catch (error) {
       console.log(error);

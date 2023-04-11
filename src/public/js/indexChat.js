@@ -36,13 +36,14 @@ formInput.onsubmit = (e) => {
 };
 
 //Chat
-socketClient.on('chat', (info) => {
+export const chat = socketClient.on('chat', (info) => {
   const dataChat = info
     .map((obj) => {
       return `<p>${obj.name}: ${obj.data}</p>`;
     })
     .join(' ');
   chatInput.innerHTML = dataChat;
+  return dataChat;
 });
 
 //Nuevo usuario conectado

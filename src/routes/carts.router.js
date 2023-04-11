@@ -26,7 +26,7 @@ router.get('/:cid', async (req, res) => {
     const { cid } = req.params;
     const cart = await cartManager.getCartById(cid);
     if (cart.length == 0) {
-      res.json({ message: 'Cart not existent' });
+      res.json({ message: 'Cart does not exist' });
     } else {
       res.status(201).json(cart);
     }
@@ -40,10 +40,16 @@ router.post('/:cid/product/:pid', async (req, res) => {
   try {
     const { cid, pid } = req.params;
     const newCart = await cartManager.addProductsToCart(cid, pid);
-    res.status(201).json(newCart);
+    if (newCart === "Error: Cart doesn't exist") {
+      res.status(404).json({ message: "Cart doesn't exist" });
+    } else if (newCart === "Error: Product doesn't exist") {
+      res.status(404).json({ message: "Product doesn't exist" });
+    } else {
+      res.status(201).json(newCart);
+    }
   } catch (error) {
     console.log(error);
-    res.status(400).json({ error: 'It was not possible to add the product' });
+    res.status(500).json({ error: error.toString() || 'It was not possible to add the product' });
   }
 });
 
